@@ -34,15 +34,16 @@ public class TesteGoogle {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(Keys.ENTER);
 
-		int returnText = driver.findElement(By.xpath("//div[@id='result-stats']")).getText().hashCode();
+		String returnText = driver.findElement(By.xpath("//div[@id='result-stats']")).getText().substring(0, 15);
+		System.out.println("\nApresentou o resultado na tela >> " + returnText +"\n");
 		Thread.sleep(5000);
-		if (returnText > 0) {
+		if (returnText.equalsIgnoreCase("Aproximadamente")) {
 			Assert.assertTrue(true);
 			System.out.println(driver.findElement(By.xpath("//div[@id='result-stats']")).getText());
 		} else {
 			System.out.println("Favor verificar o texto inserido no Google");
 			Assert.fail();
 		}
-		driver.close();
+		driver.quit();
 	}
 }
