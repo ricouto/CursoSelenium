@@ -29,7 +29,7 @@ public class TesteGoogle {
 		driver.findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(Keys.ENTER);
 
 		int returnText = driver.findElement(By.xpath("//div[@id='result-stats']")).getText().hashCode();
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		if (returnText > 0) {
 			Assert.assertTrue(true);
 			System.out.println(driver.findElement(By.xpath("//div[@id='result-stats']")).getText());
