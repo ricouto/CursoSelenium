@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -14,10 +15,16 @@ public class TesteGoogle {
 
 	@Test
 	public void teste() throws InterruptedException {
+		ChromeOptions options = new ChromeOptions();
+		  options.addArguments("--headless");
+		 
+		  WebDriver driver = new ChromeDriver(options);
+		 
+		  
 		System.setProperty("webdriver.chrome.driver",
 		"C:\\Users\\HiTECH-PC\\workspace\\CursoSelenium\\src\\test\\resources\\chromedriver.exe");
 		// WebDriver driver = new FirefoxDriver();
-		WebDriver driver = new ChromeDriver();
+				
 		// WebDriver driver = new InternetExplorerDriver();
 
 		driver.get("http://www.google.com");
