@@ -28,14 +28,15 @@ public class TesteGoogle {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(Keys.ENTER);
 
-		int returnText = driver.findElement(By.xpath("//h3[1]")).getText().hashCode();
+		int returnText = driver.findElement(By.xpath("//div[@id='result-stats']")).getText().hashCode();
+		Thread.sleep(2000);
 		if (returnText > 0) {
 			Assert.assertTrue(true);
-			System.out.println(driver.findElement(By.xpath("//h3[1]")).getText());
+			System.out.println(driver.findElement(By.xpath("//div[@id='result-stats']")).getText());
 		} else {
 			System.out.println("Favor verificar o texto inserido no Google");
 			Assert.fail();
 		}
-		driver.quit();
+		driver.close();
 	}
 }
