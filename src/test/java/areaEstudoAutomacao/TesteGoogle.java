@@ -14,8 +14,8 @@ public class TesteGoogle {
 
 	@Test
 	public void teste() throws InterruptedException {
-		// System.setProperty("webdriver.firefox.marionette",
-		// "C://Users//HiTECH-PC//Documents//estudandoSelenium//geckodriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+		"C:\\Users\\HiTECH-PC\\workspace\\CursoSelenium\\src\\test\\resources\\chromedriver.exe");
 		// WebDriver driver = new FirefoxDriver();
 		WebDriver driver = new ChromeDriver();
 		// WebDriver driver = new InternetExplorerDriver();
