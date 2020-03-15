@@ -15,14 +15,14 @@ public class TesteGoogle {
 
 	@Test
 	public void teste() throws InterruptedException {
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless");
+		//ChromeOptions options = new ChromeOptions();
+		//options.addArguments("--headless");
 		 
 		System.setProperty("webdriver.chrome.driver",
 		"C:\\Users\\HiTECH-PC\\workspace\\CursoSelenium\\src\\test\\resources\\chromedriver.exe");
 		// WebDriver driver = new FirefoxDriver();
 		
-		WebDriver driver = new ChromeDriver(options);
+		WebDriver driver = new ChromeDriver();
 				
 		// WebDriver driver = new InternetExplorerDriver();
 
@@ -35,7 +35,7 @@ public class TesteGoogle {
 		driver.findElement(By.xpath("//input[@class='gLFyf gsfi']")).sendKeys(Keys.ENTER);
 
 		int returnText = driver.findElement(By.xpath("//div[@id='result-stats']")).getText().hashCode();
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		if (returnText > 0) {
 			Assert.assertTrue(true);
 			System.out.println(driver.findElement(By.xpath("//div[@id='result-stats']")).getText());
