@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 
 	@RunWith(Suite.class)				
 	@Suite.SuiteClasses({				
-	  TesteGoogle.class
+	  TesteGoogle.class,
+	  TestAPI.class
 	})		
 
 	public class ExecuteTest {				
