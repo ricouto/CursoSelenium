@@ -16,14 +16,13 @@ public class TesteGoogle {
 	@Test
 	public void teste() throws InterruptedException {
 		ChromeOptions options = new ChromeOptions();
-		  options.addArguments("--headless");
+		options.addArguments("--headless");
 		 
-		  WebDriver driver = new ChromeDriver(options);
-		 
-		  
 		System.setProperty("webdriver.chrome.driver",
 		"C:\\Users\\HiTECH-PC\\workspace\\CursoSelenium\\src\\test\\resources\\chromedriver.exe");
 		// WebDriver driver = new FirefoxDriver();
+		
+		WebDriver driver = new ChromeDriver(options);
 				
 		// WebDriver driver = new InternetExplorerDriver();
 
