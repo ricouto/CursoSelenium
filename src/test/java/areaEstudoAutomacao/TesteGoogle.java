@@ -18,12 +18,15 @@ public class TesteGoogle {
 
 	@BeforeClass
 	public static void iniciaNavegador() throws InterruptedException {
+		
+		String localPasta = System.getProperty("user.dir");
+		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
 
 		System.setProperty(
 				"webdriver.chrome.driver",
-				"C:\\Users\\HiTECH-PC\\workspace\\CursoSelenium\\src\\test\\resources\\chromedriver.exe");
+				localPasta + "\\src\\test\\resources\\chromedriver.exe");
 		// WebDriver driver = new FirefoxDriver();
 
 		driver = new ChromeDriver(options);
