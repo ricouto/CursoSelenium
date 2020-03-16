@@ -59,7 +59,7 @@ public class TesteGoogle {
 				.substring(0, 15);
 		System.out.println("\nApresentou o resultado na tela >> " + returnText
 				+ "\n");
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 		if (returnText.equalsIgnoreCase("Aproximadamente")) {
 			Assert.assertTrue(true);
 			System.out.println(driver.findElement(
