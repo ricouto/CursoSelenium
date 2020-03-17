@@ -71,6 +71,11 @@
 			<artifactId>maven-surefire-report-plugin</artifactId>
 			<version>3.0.0-M4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jxr-plugin</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>
@@ -80,7 +85,28 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>3.0.0-M4</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<!-- Ignore src/main in JAR packaging -->
+					<configuration>
+						<classesDirectory>src</classesDirectory>
+						<excludes>
+							<exclude>main</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
