@@ -1,15 +1,14 @@
 package areaEstudoAutomacao;
 
 import static org.hamcrest.Matchers.*;
-//import static org.hamcrest.Matchers.containsString;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import org.junit.*;
 
 public class TestAPI<JUnitReportServiceExample, ServiceObject> {
 	
-	private JUnitReportServiceExample junitAssertEqualsServiceSample;
-    private ServiceObject serviceObject;
+	//private JUnitReportServiceExample junitAssertEqualsServiceSample;
+    //private ServiceObject serviceObject;
     
 		@Test
 		public void testAPI() {

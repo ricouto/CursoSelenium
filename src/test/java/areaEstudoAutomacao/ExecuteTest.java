@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 	@RunWith(Suite.class)				
 	@Suite.SuiteClasses({				
 	  TesteGoogle.class,
+	  SiteAleatorio.class,
 	  TestAPI.class
 	})		
 
