@@ -18,7 +18,7 @@ public class ConexaoDrive {
 		String localPasta = System.getProperty("user.dir");
 		
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless");//"start-maximized"
+		options.addArguments("--headless");//("start-maximized");//
 
 		System.setProperty(
 				"webdriver.chrome.driver",
@@ -31,6 +31,7 @@ public class ConexaoDrive {
 	@AfterClass
 	public static void finalizaNavegador() throws InterruptedException {
 		if (driver != null)
+			driver.manage().deleteAllCookies();
 			driver.quit();
 	}
 }
