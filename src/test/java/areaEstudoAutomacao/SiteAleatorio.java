@@ -12,6 +12,12 @@ import org.junit.Assert;
 
 public class SiteAleatorio extends ConexaoDrive {
 	
+	public static String userSite = "hannah.flores";
+	public static String jobCRUD = "Quality Assurance";
+	public static String loginUser = "Admin";
+	public static String passUser = "admin123";
+	
+	
 	@BeforeClass
 	public static void openSite(){
 		driver.get("https://opensource-demo.orangehrmlive.com/");
@@ -24,23 +30,23 @@ public class SiteAleatorio extends ConexaoDrive {
 	}
 	
 	public static void logonSiteOrange() throws InterruptedException{
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys("Admin");
-		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("admin123");
-		Thread.sleep(1000);
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys(loginUser);
+		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys(passUser);
+		Thread.sleep(500);
 
 		driver.findElement(By.name("Submit")).click();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		System.out.println("\nAcessado o site com o perfil: " + driver.findElement(By.xpath("//a[contains(text(),'Welcome Admin')]")).getText());
 	}
 	
 	public static void logoffSiteOrange() throws InterruptedException{
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.xpath("//a[contains(text(),'Welcome Admin')]")).click();
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//a[contains(text(),'Logout')]")).click();
 		
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		System.out.println("\nSaindo do website " + driver.getTitle());
 		Assert.assertEquals(driver.getTitle().trim(),"OrangeHRM");
 	}
@@ -50,7 +56,7 @@ public class SiteAleatorio extends ConexaoDrive {
 	public void logonApplication() throws InterruptedException{
 
 		logonSiteOrange();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 
 		System.out.println("Acessado com o perfil: " + driver.findElement(By.xpath("//a[contains(text(),'Welcome Admin')]")).getText().trim());
 		Assert.assertEquals(driver.findElement(By.xpath("//a[contains(text(),'Welcome Admin')]")).getText().trim(),"Welcome Admin");
@@ -64,7 +70,7 @@ public class SiteAleatorio extends ConexaoDrive {
 		
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//input[@id='txtUsername']")).clear();
-		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("admin123");
+		driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys(passUser);
 		Thread.sleep(500);
 
 		driver.findElement(By.name("Submit")).click();
@@ -79,7 +85,7 @@ public class SiteAleatorio extends ConexaoDrive {
 	public void loginSemPassword() throws InterruptedException{
 		
 		Thread.sleep(500);
-		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys("admin");
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys(loginUser);
 		driver.findElement(By.xpath("//input[@id='txtPassword']")).clear();
 		Thread.sleep(500);
 
@@ -101,7 +107,7 @@ public class SiteAleatorio extends ConexaoDrive {
 		
 		driver.findElement(By.xpath("//a/b[contains(text(),'Admin')]")).click();
 		Thread.sleep(500);
-		driver.findElement(By.xpath("//input[@id='searchSystemUser_userName']")).sendKeys("fiona.grace");
+		driver.findElement(By.xpath("//input[@id='searchSystemUser_userName']")).sendKeys(userSite);
 		
 		driver.findElement(By.xpath("//input[@id='searchBtn']")).click();
 		Thread.sleep(500);
@@ -112,7 +118,7 @@ public class SiteAleatorio extends ConexaoDrive {
         
 		for (int i=0; i<listOfElements.size();i++){
 		      System.out.println("Elementos da tabela: " + listOfElements.get(i).getText());
-		      Assert.assertEquals(listOfElements.get(1).getText(),"fiona.grace");
+		      Assert.assertEquals(listOfElements.get(1).getText(),userSite);
 		}
         }catch (Exception e){
         	System.out.println("Aconteceu algo durante a execucao da tabela! " + e.getStackTrace());
@@ -144,7 +150,7 @@ public class SiteAleatorio extends ConexaoDrive {
 		driver.findElement(By.xpath("//div//input[@id='btnAdd']")).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//div//h1[contains(text(),'Add Job Title')]")).getText(),"Add Job Title");
 		
-		driver.findElement(By.xpath("//fieldset//input[@id='jobTitle_jobTitle']")).sendKeys("Quality Assurance");
+		driver.findElement(By.xpath("//fieldset//input[@id='jobTitle_jobTitle']")).sendKeys(jobCRUD);
 		
 		driver.findElement(By.xpath("//fieldset//textarea[@id='jobTitle_jobDescription']")).sendKeys(""
 				+ "It is a long established fact that a reader will be distracted by "
@@ -161,14 +167,14 @@ public class SiteAleatorio extends ConexaoDrive {
 				+ "it look like readable English. Many desktop publishing packages and.");
 		
 		driver.findElement(By.xpath("//div//input[@id='btnSave']")).click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		try{
 		List<WebElement> listOfElements = driver.findElements(By.xpath("//div/table//td/a"));
         
 		for (int i=0; i<listOfElements.size();i++){
-		      	if (listOfElements.get(i).getText().equalsIgnoreCase("Quality Assurance")){
-		      		System.out.println("Incluido o novo cargo Quality Assurance");
+		      	if (listOfElements.get(i).getText().equalsIgnoreCase(jobCRUD)){
+		      		System.out.println("Incluido o novo cargo " + jobCRUD);
 		      	}
 		}
         }catch (Exception e){
@@ -185,14 +191,14 @@ public class SiteAleatorio extends ConexaoDrive {
 		System.out.println("\n.... Tenta inserir Duplicate Job ....\n");
 		
 		driver.findElement(By.xpath("//a/b[contains(text(),'Admin')]")).click();
-		Thread.sleep(500);
+		Thread.sleep(250);
 		
 		driver.findElement(By.xpath("//li//a[contains(text(),'Job') and @id='menu_admin_Job']")).click();
-		Thread.sleep(500);
+		Thread.sleep(250);
 		
 		driver.findElement(By.xpath("//li//a[contains(text(),'Job Titles')]")).click();
-		
 		Thread.sleep(500);
+		
 		System.out.println(driver.findElement(By.xpath("//div//h1[contains(text(),'Job Titles')]")).getText());
 		Assert.assertEquals(driver.findElement(By.xpath("//div//h1[contains(text(),'Job Titles')]")).getText(),"Job Titles");
 	
@@ -200,10 +206,10 @@ public class SiteAleatorio extends ConexaoDrive {
 		driver.findElement(By.xpath("//div//input[@id='btnAdd']")).click();
 		Assert.assertEquals(driver.findElement(By.xpath("//div//h1[contains(text(),'Add Job Title')]")).getText(),"Add Job Title");
 		
-		driver.findElement(By.xpath("//fieldset//input[@id='jobTitle_jobTitle']")).sendKeys("Quality Assurance");
+		driver.findElement(By.xpath("//fieldset//input[@id='jobTitle_jobTitle']")).sendKeys(jobCRUD);
 		
 		Thread.sleep(200);
-		System.out.println(driver.findElement(By.xpath("//li//span[contains(text(),'Already exists')]")).getText() + " - job Quality Assurance");
+		System.out.println(driver.findElement(By.xpath("//li//span[contains(text(),'Already exists')]")).getText() + " - job " + jobCRUD);
 		Assert.assertEquals(driver.findElement(By.xpath("//li//span[contains(text(),'Already exists')]")).getText(),"Already exists");
 		
 		logoffSiteOrange();
@@ -213,27 +219,27 @@ public class SiteAleatorio extends ConexaoDrive {
 	public static void deleteJobTitles() throws InterruptedException{
 
 		logonSiteOrange();
-		Thread.sleep(500);
+		Thread.sleep(250);
 		System.out.println("\n.... Delete Job ....\n");
 		
 		driver.findElement(By.xpath("//a/b[contains(text(),'Admin')]")).click();
-		Thread.sleep(500);
+		Thread.sleep(250);
 		
 		driver.findElement(By.xpath("//li//a[contains(text(),'Job') and @id='menu_admin_Job']")).click();
-		Thread.sleep(500);
+		Thread.sleep(250);
 		
 		driver.findElement(By.xpath("//li//a[contains(text(),'Job Titles')]")).click();
+		Thread.sleep(250);
 		
-		Thread.sleep(500);
 		System.out.println(driver.findElement(By.xpath("//div//h1[contains(text(),'Job Titles')]")).getText());
 		Assert.assertEquals(driver.findElement(By.xpath("//div//h1[contains(text(),'Job Titles')]")).getText(),"Job Titles");
 	
 		Thread.sleep(500);
-		System.out.println("Removendo o cargo: " + driver.findElement(By.xpath("//tbody//td/a[contains(text(),'Quality Assurance')]")).getText());
+		System.out.println("Removendo o cargo: " + driver.findElement(By.xpath("//tbody//td/a[contains(text(),'"+ jobCRUD +"')]")).getText());
 		Thread.sleep(500);
-		driver.findElement(By.xpath("//tbody//td/a[contains(text(),'Quality Assurance')]/../..//input[@type]")).click();
+		driver.findElement(By.xpath("//tbody//td/a[contains(text(),'"+ jobCRUD +"')]/../..//input[@type]")).click();
 		
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		driver.findElement(By.xpath("//input[@id='btnDelete']")).click();
 		driver.switchTo().activeElement();
 		System.out.println(driver.findElement(By.xpath("//div[@id='deleteConfModal']//p")).getText());
@@ -242,7 +248,7 @@ public class SiteAleatorio extends ConexaoDrive {
 		Thread.sleep(500);
 		driver.findElement(By.xpath("//div[@id='deleteConfModal']//input[@id='dialogDeleteBtn']")).click();
 		
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		try{
 		List<WebElement> listOfElements = driver.findElements(By.xpath("//div/table//td/a"));
 		System.out.println("Number of elements: " +listOfElements.size());
@@ -250,11 +256,11 @@ public class SiteAleatorio extends ConexaoDrive {
 		for (int i=0; i<listOfElements.size();i++){
 		      System.out.println("Elementos da tabela: " + listOfElements.get(i).getText());
 		      	if (listOfElements.get(i).getText().equalsIgnoreCase("Quality Assurance")){
-		      		System.out.println("Não apagou o cargo Quality Assurance");
+		      		System.out.println("Não apagou o cargo " + jobCRUD);
 		      		Assert.fail();
 		      	}
 		}
-		System.out.println("\n.... Removido o cargo Quality Assurance da grid ....\n");
+		System.out.println("\n.... Removido o cargo " + jobCRUD + " ....\n");
         }catch (Exception e){
         	System.out.println("Aconteceu algo durante a execucao da tabela! " + e.getStackTrace());
         }
