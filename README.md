@@ -4,20 +4,14 @@
 ## Foi utilizado neste projeto as seguintes tecnologias a caracter de apreifeçoamento e ampliar o conhecimento, segue a lista:
 
 
-|_ _|_ _|
-|   |	|
-|s|#### 1. Java com Selenium WebDriver|
-|a|#### 2. Maven|
-|w|#### 3. JUnit|
-|e|#### 4. GIT e GitHUB|
-|![](/src/test/resources/imagensReadMe/jenkins.png)|#### 5. Jenkins|
-|||
-|||
-||## _ _ Sites _ _ |
-|||
-||#### 6. Site OrangeHRM|
-||#### 7. Site Google|
-||#### 8. API Postman|
-
-
+Alimentos | Preço
+--------- | ------
+Arroz     | #### 1. Java com Selenium WebDriver
+Feijão    | #### 2. Maven
+Batata    | #### 3. JUnit
+Macarrão  | #### 4. GIT e GitHUB
+![](/src/test/resources/imagensReadMe/jenkins.png) | #### 5. Jenkins
+Feijão    | #### 6. Site OrangeHRM
+Batata    | #### 7. Site Google
+Macarrão  | #### 8. API Postman
 
