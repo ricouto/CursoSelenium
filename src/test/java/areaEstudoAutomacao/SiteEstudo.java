@@ -231,7 +231,6 @@ public class SiteEstudo extends ConexaoDrive {
 	
 	@Test
 	public void treinaCampoDesafioRNAula39() throws InterruptedException{
-		Alert txtAlerta;
 		
 		//valida RN campo Nome
 		dsl.clicarBotao("//input[@id='elementosForm:cadastrar']");
@@ -268,7 +267,6 @@ public class SiteEstudo extends ConexaoDrive {
 		Assert.assertEquals("Voce faz esporte ou nao?",dsl.windowAlert().getText());
 		dsl.windowAlertAccept();
 		dsl.deselecionarCombo("//select[@id='elementosForm:esportes']", "O que eh esporte?");
-		
 	}
 	
 	
