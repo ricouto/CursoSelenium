@@ -18,7 +18,7 @@ public class ConexaoDrive {
 		String localPasta = System.getProperty("user.dir");
 		
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless");//("start-maximized");//
+		options.addArguments("start-maximized");//("--headless");//
 
 		System.setProperty(
 				"webdriver.chrome.driver",
