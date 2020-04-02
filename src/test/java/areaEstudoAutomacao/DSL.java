@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 public class DSL extends ConexaoDrive{
 	
 	public void escreve(By by, String texto){
+		driver.findElement(by).clear();
 		driver.findElement(by).sendKeys(texto);
 	}
 	

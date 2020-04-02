@@ -1,7 +1,9 @@
 package areaEstudoAutomacao;
 
 import java.util.List;
+
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,12 +14,14 @@ import org.junit.Assert;
 public class SiteEstudo extends ConexaoDrive {
 	
 	private static DSL dsl;
+	private static CampoTreinaPage page;
 	
 	@BeforeClass
 	public static void openSite(){
 		
 		driver.get("https://ricouto.github.io/");
 		dsl = new DSL();
+		page = new CampoTreinaPage();
 	}
 
 	@Test
@@ -26,8 +30,9 @@ public class SiteEstudo extends ConexaoDrive {
 		Thread.sleep(500);
 		System.out.println(driver.getTitle());
 		
-		dsl.escreve("//input[@id='elementosForm:nome']", "João da Silva Jr");
-		Assert.assertEquals("João da Silva Jr", dsl.obterValorCampo("//input[@id='elementosForm:nome']"));
+		page.setNome("João da Silva Jr");
+		
+		Assert.assertEquals("João da Silva Jr", page.obterNomeFormulario());
 	}
 	
 	@Test
@@ -71,7 +76,7 @@ public class SiteEstudo extends ConexaoDrive {
 		}
 		Assert.assertTrue(encontrou);
 	}
-	
+	@Ignore
 	@Test
 	public void treinaCampoValoresComboMulti() throws InterruptedException{
 		dsl.selecionarCombo("//select[@id='elementosForm:esportes']", "Natacao");
@@ -159,30 +164,20 @@ public class SiteEstudo extends ConexaoDrive {
 	@Test
 	public void treinaCampoDesafioCadastroAula35() throws InterruptedException{
 	
-	dsl.escreve("//input[@id='elementosForm:nome']", "Maitê");
-	dsl.escreve("//input[@id='elementosForm:sobrenome']", "Souza Morais");	
-	dsl.clicarRadio("//input[@id='elementosForm:sexo:1']");
-	dsl.clicarRadio("//input[@id='elementosForm:comidaFavorita:3']");
+	page.setNome("Maitê");
+	page.setSobrenome("Souza Morais");
+	page.setSexoFeminino();
+	page.setComidaVegetariano();
+	page.setEscolaridade("Especializacao");
+	page.setEsporte("Karate", "Corrida");
+	page.btnCadastrar();
 	
-	dsl.selecionarCombo("//select[@id='elementosForm:escolaridade']", "Especializacao");
-	
-	dsl.selecionarCombo("//select[@id='elementosForm:esportes']", "Natacao");
-	dsl.selecionarCombo("//select[@id='elementosForm:esportes']", "Karate");
-	
-	dsl.clicarBotao("//input[@id='elementosForm:cadastrar']");
-	
-	Assert.assertEquals(dsl.obterTexto(By.xpath("//div[@id='descNome']/span")), dsl.obterValorCampo("//input[@id='elementosForm:nome']"));
-	Assert.assertEquals(dsl.obterTexto(By.xpath("//div[@id='descSobrenome']/span")), dsl.obterValorCampo("//input[@id='elementosForm:sobrenome']"));
-	Assert.assertEquals(dsl.obterTexto(By.xpath("//input[@id='elementosForm:sexo:1']/../label")), 
-			dsl.obterTexto(By.xpath("//div[@id='descSexo']/span")));
-	
-	Assert.assertEquals(dsl.obterValorCampo("//input[@id='elementosForm:comidaFavorita:3']").toLowerCase(), 
-			dsl.obterTexto(By.xpath("//div[@id='descComida']/span")).toLowerCase());
-	
-	Assert.assertEquals(dsl.obterTexto(By.xpath("//div[@id='descEscolaridade']/span")).toLowerCase(),
-			dsl.obterValorCombo("//select[@id='elementosForm:escolaridade']").toLowerCase());
-	
-	Assert.assertEquals(2, dsl.obterValoresCombo("//select[@id='elementosForm:esportes']").size());
+	Assert.assertEquals(page.obterNomeCadastro(), page.obterNomeFormulario());
+	Assert.assertEquals(page.obterSobrenomeCadastro(), page.obterSobrenomeFormulario());
+	Assert.assertEquals(page.obterSexoCadastro(),page.obterSexoFemiFormulario());
+	Assert.assertEquals(page.obterComidaCadastro().toLowerCase(),page.obterComidaVegetaFormulario().toLowerCase());
+	Assert.assertEquals(page.obterEscolaridadeCadastro().toLowerCase(),page.obterEscolariFormulario().toLowerCase());
+	Assert.assertEquals(2, page.obterEsporteFormulario().size());
 	
 	}
 	
@@ -206,11 +201,13 @@ public class SiteEstudo extends ConexaoDrive {
 	
 	driver.findElement(By.xpath("//input[@id='buttonPopUpEasy']")).click();
 	driver.switchTo().window("Popup");
-	driver.findElement(By.tagName("textarea")).sendKeys("Deu Certo!");
+	dsl.escreve(By.tagName("textarea"), "Deu Certo!");
+	//driver.findElement(By.tagName("textarea")).sendKeys("Deu Certo!");
 	driver.close();
 	
 	driver.switchTo().window("");
-	driver.findElement(By.tagName("textarea")).sendKeys("e..... agora?");
+	dsl.escreve(By.tagName("textarea"), "e..... agora?");
+	//driver.findElement(By.tagName("textarea")).sendKeys("e..... agora?");
 	
 	}
 	
@@ -222,13 +219,16 @@ public class SiteEstudo extends ConexaoDrive {
 	System.out.println(driver.getWindowHandles());
 	
 	driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
-	driver.findElement(By.tagName("textarea")).sendKeys("Escrevi na Janela do Mal....");
+	dsl.escreve(By.tagName("textarea"), "Escrevi na Janela do Mal....");
+			//By.tagName("textarea")).sendKeys("Escrevi na Janela do Mal....");
 	
 	driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
-	driver.findElement(By.tagName("textarea")).sendKeys("Novamente na janela do Bem S2....");
+	dsl.escreve(By.tagName("textarea"), "Novamente na janela do Bem S2....");
+	//driver.findElement(By.tagName("textarea")).sendKeys("Novamente na janela do Bem S2....");
 	
 	}
 	
+	@Ignore
 	@Test
 	public void treinaCampoDesafioRNAula39() throws InterruptedException{
 		
@@ -267,6 +267,15 @@ public class SiteEstudo extends ConexaoDrive {
 		Assert.assertEquals("Voce faz esporte ou nao?",dsl.windowAlert().getText());
 		dsl.windowAlertAccept();
 		dsl.deselecionarCombo("//select[@id='elementosForm:esportes']", "O que eh esporte?");
+	}
+	
+	@Test
+	public void escreveApagaNome(){
+		dsl.escreve("//input[@id='elementosForm:nome']", "Carlinhos");
+		Assert.assertEquals("Carlinhos", dsl.obterValorCampo(By.xpath("//input[@id='elementosForm:nome']")));
+		
+		dsl.escreve("//input[@id='elementosForm:nome']", "Mariazinha");
+		Assert.assertEquals("Mariazinha", dsl.obterValorCampo(By.xpath("//input[@id='elementosForm:nome']")));
 	}
 	
 	

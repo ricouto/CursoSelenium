@@ -12,6 +12,8 @@ import org.junit.runner.notification.Failure;
 	@Suite.SuiteClasses({				
 	  TesteGoogle.class,
 	  SiteAleatorio.class,
+	  CampoTreinaRegras.class,
+	  SiteEstudo.class,
 	  TestAPI.class,
 	  SiteAleatorioCopy.class
 	})	
