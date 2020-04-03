@@ -8,6 +8,7 @@ import org.junit.runners.Suite;
 	  TesteGoogle.class,
 	  SiteAleatorio.class,
 	  SiteEstudo.class,
+	  SiteEstudoPrimeFaces.class,
 	  CampoTreinaRegras.class,
 	  TestAPI.class,
 	  SiteAleatorioCopy.class

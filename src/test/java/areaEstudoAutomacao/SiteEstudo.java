@@ -1,6 +1,7 @@
 package areaEstudoAutomacao;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -8,7 +9,9 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.Assert;
 
 public class SiteEstudo extends ConexaoDrive {
@@ -197,6 +200,23 @@ public class SiteEstudo extends ConexaoDrive {
 	}
 	
 	@Test
+	public void treinaCampoFrameEscondido() throws InterruptedException{
+	
+	WebElement frame = driver.findElement(By.id("frame2"));
+	dsl.executarJS("window.scrollBy(0, arguments[0])", frame.getLocation().y);
+	driver.switchTo().frame("frame2");
+	driver.findElement(By.xpath("//input[@id='frameButton']")).click();
+	Alert alertPopUp = driver.switchTo().alert();
+	String msgAlert = alertPopUp.getText();
+	Assert.assertEquals("Frame OK!", msgAlert);
+	alertPopUp.accept();
+	
+	driver.switchTo().defaultContent();
+	driver.findElement(By.xpath("//input[@id='elementosForm:nome']")).sendKeys(msgAlert);
+	
+	}
+	
+	@Test
 	public void treinaCampoJanela() throws InterruptedException{
 	
 	driver.findElement(By.xpath("//input[@id='buttonPopUpEasy']")).click();
@@ -278,6 +298,27 @@ public class SiteEstudo extends ConexaoDrive {
 		Assert.assertEquals("Mariazinha", dsl.obterValorCampo(By.xpath("//input[@id='elementosForm:nome']")));
 	}
 	
+	@Test
+	public void deveUtilizarEsperaFixa() throws InterruptedException{
+		dsl.clicarBotao("//input[@id='buttonDelay']");
+		Thread.sleep(5000);
+		dsl.escreve("//input[@id='novoCampo']", "Escreve aqui neste campo!!!");
+	}
 	
+	@Test
+	public void deveUtilizarEsperaImplicita(){
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		dsl.clicarBotao("//input[@id='buttonDelay']");
+		dsl.escreve("//input[@id='novoCampo']", "Escreve aqui neste campo!!!");
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+	}
+	
+	@Test
+	public void deveUtilizarEsperaExplicita(){
+		dsl.clicarBotao("//input[@id='buttonDelay']");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
+		dsl.escreve("//input[@id='novoCampo']", "Escreve aqui neste campo!!!");
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -70,6 +71,11 @@ public class DSL extends ConexaoDrive{
 		return valorComboEscola.getAllSelectedOptions();
 	}
 	
+	public void obterValorComboPrime(String radical, String valor){
+		clicarBotao("//label[@id='"+radical+"_label']/..//span");
+		clicarBotao("//ul[@id='"+radical+"_items']/li[.='"+valor+"']");
+	}
+	
 	public void clicarLink(String link){
 		driver.findElement(By.linkText(link)).click();
 	}
@@ -82,6 +88,10 @@ public class DSL extends ConexaoDrive{
 		return obterTexto(By.id(id));
 	}
 	
+	public String obterTextoPrime(String radical){
+		return obterTexto(By.xpath("//label[@id='"+radical+"_label']"));
+	}
+	
 	public Alert windowAlert(){
 		Alert txtAlerta = driver.switchTo().alert();
 		//String textoAlerta = txtAlerta.getText();
@@ -92,6 +102,9 @@ public class DSL extends ConexaoDrive{
 		driver.switchTo().alert().accept();
 	}
 	
-
+	public Object executarJS(String cmd, Object... param){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		return js.executeScript(cmd, param);
+	}
 
 }
