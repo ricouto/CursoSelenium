@@ -42,6 +42,7 @@ public class SiteEstudoPrimeFaces extends ConexaoDrive {
 		//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='j_idt792']")));
 		Assert.assertEquals("jkadsfklaj fkdjakdf jakdf jkajfd kjsa dkfjsa kdfjkajdfjaskd fjakdfjaksdfj kasjd fkjas dfkja skdfj sadf",
 				dsl.obterTexto(By.xpath("//span[@id='j_idt720:display']")));
+		System.out.println("\n**** Fim testes com PrimeFaces ****\n");
 	}
 	
 	

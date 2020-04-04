@@ -19,6 +19,10 @@ public class DSL extends ConexaoDrive{
 		escreve(By.xpath(id_campo), texto);
 	}
 	
+	public void limparCampo(String id_campo){
+		driver.findElement(By.xpath(id_campo)).clear();
+	}
+	
 	public String obterValorCampo(By by){
 		return driver.findElement(by).getAttribute("value");
 	}
@@ -81,11 +85,15 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public String obterTexto(By by){
-		return driver.findElement(by).getText();
+		return driver.findElement(by).getText().trim();
 	}
 		
 	public String obterTexto(String id){
 		return obterTexto(By.id(id));
+	}
+	
+	public String obterTextoXP(String xp){
+		return obterTexto(By.xpath(xp));
 	}
 	
 	public String obterTextoPrime(String radical){
@@ -106,5 +114,10 @@ public class DSL extends ConexaoDrive{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return js.executeScript(cmd, param);
 	}
-
+	
+	public void executarJSZoom(){
+		String zoomLevelReduced="80%";
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.body.style.zoom='" + zoomLevelReduced +"'");
+	}
 }

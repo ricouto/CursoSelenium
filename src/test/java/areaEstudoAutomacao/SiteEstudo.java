@@ -29,7 +29,7 @@ public class SiteEstudo extends ConexaoDrive {
 
 	@Test
 	public void treinaCampoTexto() throws InterruptedException{
-
+		System.out.println("\n**** Site de estudos Campo de Treinamento ****\n");
 		Thread.sleep(500);
 		System.out.println(driver.getTitle());
 		
@@ -319,6 +319,7 @@ public class SiteEstudo extends ConexaoDrive {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
 		dsl.escreve("//input[@id='novoCampo']", "Escreve aqui neste campo!!!");
+		System.out.println("\n**** Fim dos testes no site de estudos Campo de Treinamento ****\n");
 	}
 	
 }

@@ -3,6 +3,7 @@ package areaEstudoAutomacao;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
+
 import org.junit.*;
 
 public class TestAPI<JUnitReportServiceExample, ServiceObject> {
@@ -13,6 +14,7 @@ public class TestAPI<JUnitReportServiceExample, ServiceObject> {
 		@Test
 		public void testAPI() {
 		String uriBase = "https://postman-echo.com/get";
+		System.out.println("\n**** API Postman ****\n");
 		given()
 			.relaxedHTTPSValidation()
 			.param("foo1", "bar1")
@@ -28,9 +30,6 @@ public class TestAPI<JUnitReportServiceExample, ServiceObject> {
 		
 				//String accessToken = JSONObject.getNames("postman-token").toString();
 				//System.out.println(accessToken);
-		
-		
+		System.out.println("\n**** Fim API Postman ****\n");
 		}
-
 	}
-

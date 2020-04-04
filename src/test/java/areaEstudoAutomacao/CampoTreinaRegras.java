@@ -55,7 +55,7 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	
 	@Test
 	public void treinaCampoDesafioCadastroAula35() throws InterruptedException{
-	
+	System.out.println("\n**** Site de estudo parametrizado ****\n");
 	page.setNome(nome);
 	page.setSobrenome(sobrenome);
 	if(sexo.equals("Masculino"))
@@ -72,5 +72,6 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	System.out.println(dsl.windowAlert().getText());
 	Assert.assertEquals(msg, dsl.windowAlert().getText());
 	dsl.windowAlertAccept();
+	System.out.println("\n**** Fim site de estudo parametrizado ****\n");
 	}
 }
