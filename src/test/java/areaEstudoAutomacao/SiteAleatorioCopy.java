@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,9 @@ public class SiteAleatorioCopy extends ConexaoDrive {
 	final String caseCategories = "Job Categories";
 	final String caseWork = "Work Shifts";
 	static int tcNewPay = 0;
+	
+	@Rule
+	public ScreenShotFailure failure = new ScreenShotFailure();
 	
 	@BeforeClass
 	public static void openSite(){
@@ -103,9 +107,6 @@ public class SiteAleatorioCopy extends ConexaoDrive {
 		driver.findElement(By.xpath("//div//input[@id='btnCancel']")).click();
 		Thread.sleep(500);
 	}
-	
-	
-	
 		
 	@Test
 	public void insertNewJobTitles() throws InterruptedException{

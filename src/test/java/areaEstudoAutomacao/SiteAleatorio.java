@@ -1,9 +1,11 @@
 package areaEstudoAutomacao;
 
 import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -25,10 +27,12 @@ public class SiteAleatorio extends ConexaoDrive {
 	public static String lblDelete = "Delete records?";
 	private static DSL dsl = new DSL();
 	
+	@Rule
+	public ScreenShotFailure failure = new ScreenShotFailure();
+	
 	@BeforeClass
 	public static void openSite(){
 		driver.get("https://opensource-demo.orangehrmlive.com/");
-		//dsl.executarJSZoom();
 	}
 	
 	@Before

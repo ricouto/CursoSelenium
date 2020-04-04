@@ -1,6 +1,7 @@
 package areaEstudoAutomacao;
 
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,9 @@ import org.junit.Assert;
 public class SiteEstudoPrimeFaces extends ConexaoDrive {
 	
 	private static DSL dsl;
+	
+	@Rule
+	public ScreenShotFailure failure = new ScreenShotFailure();
 	
 	@BeforeClass
 	public static void openSite(){

@@ -116,7 +116,7 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public void executarJSZoom(){
-		String zoomLevelReduced="80%";
+		String zoomLevelReduced="75%";
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.body.style.zoom='" + zoomLevelReduced +"'");
 	}

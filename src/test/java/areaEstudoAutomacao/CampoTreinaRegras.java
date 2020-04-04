@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,6 +18,9 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	
 	private static DSL dsl;
 	private static CampoTreinaPage page;
+	
+	@Rule
+	public ScreenShotFailure failure = new ScreenShotFailure();
 	
 	@Parameter
 	public String nome;

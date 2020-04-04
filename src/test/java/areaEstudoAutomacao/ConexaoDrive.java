@@ -5,11 +5,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,8 +30,8 @@ public class ConexaoDrive {
 	static WebDriver driver;
 	static String localPasta = System.getProperty("user.dir");
 	
-	@Rule
-	public TestName testName = new TestName();
+	//@Rule
+	//public TestName testName = new TestName();
 	
 	@BeforeClass
 	public static void iniciaConexaoDrive(){
@@ -58,11 +62,24 @@ public class ConexaoDrive {
 		// now directory is empty, so we can delete it
 		// System.out.println("Deleting Directory. Success = " + dir.delete());
 	}
-	
+
+/*	
 	@After
 	public void screenShot() throws IOException{
-	Screenshot screenshot = new AShot().shootingStrategy(
-				ShootingStrategies.viewportPasting(50))
+    TakesScreenshot scrShot = (TakesScreenshot) driver;
+
+    File arquivo = scrShot.getScreenshotAs(OutputType.FILE);
+			
+	FileUtils.copyFile(arquivo, new File(localPasta + "\\src\\test\\resources\\imagensExecuteTest\\" 
+		+ testName.getMethodName() + ".png"));
+	}
+	
+	@After
+	public void screenShot02() throws IOException{
+	Screenshot screenshot = new AShot().shootingStrategy( 
+			ShootingStrategies.viewportPasting(ShootingStrategies.scaling(1f), 0))
+				
+				//ShootingStrategies.viewportPasting(50))
 				.takeScreenshot(driver);
 		try {
 			ImageIO.write(screenshot.getImage(),
@@ -73,7 +90,8 @@ public class ConexaoDrive {
 			e.printStackTrace();
 		}
 	}
-
+*/
+	
 	@AfterClass
 	public static void finalizaNavegador() throws InterruptedException {
 		if (driver != null)

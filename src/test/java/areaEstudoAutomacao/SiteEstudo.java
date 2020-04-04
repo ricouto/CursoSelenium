@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -19,12 +20,14 @@ public class SiteEstudo extends ConexaoDrive {
 	private static DSL dsl;
 	private static CampoTreinaPage page;
 	
+	@Rule
+	public ScreenShotFailure failure = new ScreenShotFailure();
+	
 	@BeforeClass
 	public static void openSite(){
-		
-		driver.get("https://ricouto.github.io/");
 		dsl = new DSL();
 		page = new CampoTreinaPage();
+		driver.get("https://ricouto.github.io/");
 	}
 
 	@Test
