@@ -1,1 +1,9 @@
 /target/
+/src/test/resources/imagensExecuteTest/*
+**/*.pdf
+
+**/*.zip
+
+**/*.jpg
+**/*.jpeg
+**/*.png

@@ -1,26 +1,11 @@
 package areaEstudoAutomacao;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import org.apache.commons.io.FileUtils;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.rules.TestName;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import ru.yandex.qatools.ashot.AShot;
-import ru.yandex.qatools.ashot.Screenshot;
-import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -41,7 +26,7 @@ public class ConexaoDrive {
 		
 		if(driver == null){
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("start-maximized");//("--headless");//
+			options.addArguments("--headless");//("start-maximized");//
 			driver = new ChromeDriver(options); 
 		}
 	}

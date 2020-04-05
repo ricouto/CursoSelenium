@@ -38,7 +38,7 @@ public class TesteGoogle extends ConexaoDrive {
 		System.out.println("\nApresentou o resultado na tela >> " + returnText
 				+ "\n");
 
-		if (returnText.equalsIgnoreCase("Aproximadament45454654e")) {
+		if (returnText.equalsIgnoreCase("Aproximadamente456465")) {
 			Assert.assertTrue(true);
 			System.out.println(dsl.obterTexto(By
 					.xpath("//div[@id='result-stats']")));

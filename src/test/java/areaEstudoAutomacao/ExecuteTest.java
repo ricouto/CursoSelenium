@@ -10,8 +10,8 @@ import org.junit.runners.Suite;
 	  SiteEstudo.class,
 	  SiteEstudoPrimeFaces.class,
 	  CampoTreinaRegras.class,
-	  TestAPI.class,
-	  SiteAleatorioCopy.class
+	  TestAPI.class 
+	  /*SiteAleatorioCopy.class*/
 	})	
 
 	public class ExecuteTest {				
