@@ -243,8 +243,8 @@ public class SiteEstudo extends ConexaoDrive {
 	public void treinaCampoJanelaSemTitulo() throws InterruptedException{
 	
 	driver.findElement(By.xpath("//input[@id='buttonPopUpHard']")).click();
-	System.out.println(driver.getWindowHandle());
-	System.out.println(driver.getWindowHandles());
+	//System.out.println(driver.getWindowHandle());
+	//System.out.println(driver.getWindowHandles());
 	
 	driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
 	dsl.escreve(By.tagName("textarea"), "Escrevi na Janela do Mal....");
