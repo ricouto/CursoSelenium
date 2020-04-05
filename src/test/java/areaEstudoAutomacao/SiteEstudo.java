@@ -3,6 +3,7 @@ package areaEstudoAutomacao;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -28,17 +29,21 @@ public class SiteEstudo extends ConexaoDrive {
 		dsl = new DSL();
 		page = new CampoTreinaPage();
 		driver.get("https://ricouto.github.io/");
+		System.out.println("\n**** Site de estudos Campo de Treinamento ****\n");
 	}
-
+	
+	@AfterClass
+	public static void exitSite(){
+		System.out.println("\n**** Fim dos testes no site de estudos Campo de Treinamento ****\n");
+	}
 	@Test
 	public void treinaCampoTexto() throws InterruptedException{
-		System.out.println("\n**** Site de estudos Campo de Treinamento ****\n");
 		Thread.sleep(500);
 		System.out.println(driver.getTitle());
 		
 		page.setNome("João da Silva Jr");
 		
-		Assert.assertEquals("João da Silva Jr", page.obterNomeFormulario());
+		Assert.assertEquals("João da Silva Jr545646546", page.obterNomeFormulario());
 	}
 	
 	@Test
@@ -322,7 +327,6 @@ public class SiteEstudo extends ConexaoDrive {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("novoCampo")));
 		dsl.escreve("//input[@id='novoCampo']", "Escreve aqui neste campo!!!");
-		System.out.println("\n**** Fim dos testes no site de estudos Campo de Treinamento ****\n");
 	}
 	
 }

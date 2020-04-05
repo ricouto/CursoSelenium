@@ -81,6 +81,5 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	System.out.println(dsl.windowAlert().getText());
 	Assert.assertEquals(msg, dsl.windowAlert().getText());
 	dsl.windowAlertAccept();
-	System.out.println("\n**** Fim site de estudo parametrizado ****\n");
 	}
 }
