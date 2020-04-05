@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -39,10 +40,15 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	
 	@BeforeClass
 	public static void openSite(){
-		
 		driver.get("https://ricouto.github.io/");
 		dsl = new DSL();
 		page = new CampoTreinaPage();
+		System.out.println("\n**** Site de estudo parametrizado ****\n");
+	}
+	
+	@AfterClass
+	public static void exitSite(){
+		System.out.println("\n**** Fim site de estudo parametrizado ****\n");
 	}
 	
 	@Parameters
@@ -59,7 +65,6 @@ public class CampoTreinaRegras extends ConexaoDrive {
 	
 	@Test
 	public void treinaCampoDesafioCadastroAula35() throws InterruptedException{
-	System.out.println("\n**** Site de estudo parametrizado ****\n");
 	page.setNome(nome);
 	page.setSobrenome(sobrenome);
 	if(sexo.equals("Masculino"))
