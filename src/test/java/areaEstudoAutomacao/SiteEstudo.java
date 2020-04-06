@@ -43,7 +43,7 @@ public class SiteEstudo extends ConexaoDrive {
 		
 		page.setNome("João da Silva Jr");
 		
-		Assert.assertEquals("João da Silva Jr545646546", page.obterNomeFormulario());
+		Assert.assertEquals("João da Silva Jr", page.obterNomeFormulario());
 	}
 	
 	@Test

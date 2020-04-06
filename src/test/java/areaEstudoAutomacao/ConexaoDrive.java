@@ -6,9 +6,8 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ConexaoDrive {
 	
@@ -25,9 +24,16 @@ public class ConexaoDrive {
 				localPasta + "\\src\\test\\resources\\chromedriver.exe");
 		
 		if(driver == null){
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless");//("start-maximized");//
-			driver = new ChromeDriver(options); 
+			switch (Propriedades.browser) {
+			case CHROME: 
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--headless");//("start-maximized");//
+				driver = new ChromeDriver(options);
+				break;
+			case FIREFOX:
+				driver = new FirefoxDriver();
+				break;
+			}
 		}
 	}
 		
