@@ -33,6 +33,12 @@ public class SiteAleatorio extends ConexaoDrive {
 	@BeforeClass
 	public static void openSite(){
 		driver.get("https://opensource-demo.orangehrmlive.com/");
+		System.out.println("\n**** Site Orange HRM Live de Treinamento ****\n");
+	}
+	
+	@AfterClass
+	public static void exitSite(){
+		System.out.println("\n**** Saindo do site Orange HRM Live de Treinamento ****\n");
 	}
 	
 	@Before

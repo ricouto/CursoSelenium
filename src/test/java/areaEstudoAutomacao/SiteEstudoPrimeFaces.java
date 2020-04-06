@@ -1,5 +1,6 @@
 package areaEstudoAutomacao;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,11 +19,17 @@ public class SiteEstudoPrimeFaces extends ConexaoDrive {
 	@BeforeClass
 	public static void openSite(){
 		dsl = new DSL();
+		System.out.println("\n**** PrimeFaces ****\n");
+	}
+	
+	@AfterClass
+	public static void exitSite(){
+		System.out.println("\n**** Fim testes com PrimeFaces ****\n");
 	}
 	
 	@Test
 	public void deveIntegarirComRadioPrime() {
-		System.out.println("\n**** PrimeFaces ****\n");
+		
 		driver.get("https://www.primefaces.org/showcase/ui/input/oneRadio.xhtml");
 		dsl.clicarRadio("//label[@for='j_idt721:console:0']/..//span");
 		dsl.isRadioMarcado("//label[@for='j_idt721:console:0']/..//span");
@@ -46,7 +53,6 @@ public class SiteEstudoPrimeFaces extends ConexaoDrive {
 		//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='j_idt792']")));
 		Assert.assertEquals("jkadsfklaj fkdjakdf jakdf jkajfd kjsa dkfjsa kdfjkajdfjaskd fjakdfjaksdfj kasjd fkjas dfkja skdfj sadf",
 				dsl.obterTexto(By.xpath("//span[@id='j_idt720:display']")));
-		System.out.println("\n**** Fim testes com PrimeFaces ****\n");
 	}
 	
 	
