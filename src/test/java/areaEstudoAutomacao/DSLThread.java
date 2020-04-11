@@ -7,12 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import static areaEstudoAutomacao.ConexaoDriveThread.getDriver;
 
-public class DSL extends ConexaoDrive{
+public class DSLThread {
 	
 	public void escreve(By by, String texto){
-		driver.findElement(by).clear();
-		driver.findElement(by).sendKeys(texto);
+		getDriver().findElement(by).clear();
+		getDriver().findElement(by).sendKeys(texto);
 	}
 	
 	public void escreve(String id_campo, String texto){
@@ -20,11 +21,11 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public void limparCampo(String id_campo){
-		driver.findElement(By.xpath(id_campo)).clear();
+		getDriver().findElement(By.xpath(id_campo)).clear();
 	}
 	
 	public String obterValorCampo(By by){
-		return driver.findElement(by).getAttribute("value");
+		return getDriver().findElement(by).getAttribute("value");
 	}
 	
 	public String obterValorCampo(String id_campo){
@@ -32,7 +33,7 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public void clicarBotao(By by){
-		driver.findElement(by).click();
+		getDriver().findElement(by).click();
 	}
 	
 	public void clicarBotao(String id){
@@ -40,15 +41,15 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public void clicarRadio(String id){
-		driver.findElement(By.xpath(id)).click();
+		getDriver().findElement(By.xpath(id)).click();
 	}
 	
 	public boolean isRadioMarcado(String id){
-		return driver.findElement(By.xpath(id)).isSelected();
+		return getDriver().findElement(By.xpath(id)).isSelected();
 	}
 	
 	public void selecionarCombo(String id, String valor){
-		WebElement comboEscola = driver.findElement(By.xpath(id));
+		WebElement comboEscola = getDriver().findElement(By.xpath(id));
 		Select valorComboEscola = new Select(comboEscola);
 		//valorComboEscola.selectByIndex(2);
 		//valorComboEscola.selectByValue("superior");
@@ -61,7 +62,7 @@ public class DSL extends ConexaoDrive{
 	}*/
 	
 	public void deselecionarCombo(String id, String valor){
-		WebElement comboEscola = driver.findElement(By.xpath(id));
+		WebElement comboEscola = getDriver().findElement(By.xpath(id));
 		Select valorComboEscola = new Select(comboEscola);
 		//valorComboEscola.selectByIndex(2);
 		//valorComboEscola.selectByValue("superior");
@@ -69,20 +70,20 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public String obterValorCombo(String id){
-		WebElement comboEscola = driver.findElement(By.xpath(id));
+		WebElement comboEscola = getDriver().findElement(By.xpath(id));
 		Select valorComboEscola = new Select(comboEscola);
 		return valorComboEscola.getFirstSelectedOption().getText();
 	}
 	
 	public List<WebElement> obterValoresCombo(String id){
-		WebElement comboEscola = driver.findElement(By.xpath(id));
+		WebElement comboEscola = getDriver().findElement(By.xpath(id));
 		Select valorComboEscola = new Select(comboEscola);
 		return valorComboEscola.getAllSelectedOptions();
 	}
 	
 	public int obterQtdValoresTabela(String xp){
 		
-		List<WebElement> listOfElements = driver.findElements(By.xpath(xp));
+		List<WebElement> listOfElements = getDriver().findElements(By.xpath(xp));
 		//System.out.println("Number of elements: " +listOfElements.size());
 		return listOfElements.size();
 	}
@@ -93,11 +94,11 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public void clicarLink(String link){
-		driver.findElement(By.linkText(link)).click();
+		getDriver().findElement(By.linkText(link)).click();
 	}
 	
 	public String obterTexto(By by){
-		return driver.findElement(by).getText().trim();
+		return getDriver().findElement(by).getText().trim();
 	}
 		
 	public String obterTexto(String id){
@@ -113,23 +114,23 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public Alert windowAlert(){
-		Alert txtAlerta = driver.switchTo().alert();
+		Alert txtAlerta = getDriver().switchTo().alert();
 		//String textoAlerta = txtAlerta.getText();
 		return txtAlerta;
 	}
 	
 	public void windowAlertAccept(){
-		driver.switchTo().alert().accept();
+		getDriver().switchTo().alert().accept();
 	}
 	
 	public Object executarJS(String cmd, Object... param){
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		return js.executeScript(cmd, param);
 	}
 	
 	public void executarJSZoom(){
 		String zoomLevelReduced="75%";
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("document.body.style.zoom='" + zoomLevelReduced +"'");
 	}
 	
@@ -147,7 +148,7 @@ public class DSL extends ConexaoDrive{
 	}
 	
 	public List<String> obterErros(String xp){
-		List<WebElement> erros = driver.findElements(By.xpath(xp));
+		List<WebElement> erros = getDriver().findElements(By.xpath(xp));
 		List<String> retorno = new ArrayList<String>();
 		for (WebElement erro : erros){
 			retorno.add(erro.getText());

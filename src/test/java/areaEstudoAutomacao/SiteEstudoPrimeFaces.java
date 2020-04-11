@@ -39,7 +39,7 @@ public class SiteEstudoPrimeFaces extends ConexaoDrive {
 	public void deveIntegarirComComboPrime(){
 		driver.get("https://www.primefaces.org/showcase/ui/input/oneMenu.xhtml");
 		dsl.obterValorComboPrime("j_idt721:car", "Ford");
-		Assert.assertEquals("Ford", dsl.obterTextoPrime("j_idt721:car"));
+		Assert.assertEquals("Ford_Erro!!!", dsl.obterTextoPrime("j_idt721:car"));
 	}
 	
 	@Test

@@ -27,7 +27,7 @@ public class ConexaoDrive {
 			switch (Propriedades.browser) {
 			case CHROME: 
 				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--headless");//("start-maximized");//
+				options.addArguments("start-maximized");//("--headless");//
 				driver = new ChromeDriver(options);
 				break;
 			case FIREFOX:

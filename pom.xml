@@ -6,8 +6,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-
-
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -104,9 +102,16 @@
 			<artifactId>ashot</artifactId>
 			<version>1.5.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.easetech</groupId>
+			<artifactId>easytest-core</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+
 	</dependencies>
 	<build>
-	<directory>${basedir}/target</directory>
+		<directory>${basedir}/target</directory>
+		<testSourceDirectory>src</testSourceDirectory>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -135,6 +140,11 @@
 						<testFailureIgnore>true</testFailureIgnore>
 						<testSourceDirectory>src/test/java</testSourceDirectory>
 						<printSummary>true</printSummary>
+						<includes>
+							<include>suiteTeste/*.java</include>
+						</includes>
+						<parallel>all</parallel>
+						<threadCount>1</threadCount>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -152,21 +162,29 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.9.0</version>
-        <configuration>
-          <port>9000</port>
-          <tempWebappDirectory>${basedir}/site</tempWebappDirectory>
-          <siteDirectory>${basedir}/site</siteDirectory>
-          <generateProjectInfo>false</generateProjectInfo>
-          <generateReports>false</generateReports>
-          <generateSitemap>false</generateSitemap>
-          <skip>false</skip>
-        </configuration>
-      </plugin>
-    </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.9.0</version>
+				<configuration>
+					<port>9000</port>
+					<tempWebappDirectory>${basedir}/site</tempWebappDirectory>
+					<siteDirectory>${basedir}/site</siteDirectory>
+					<generateProjectInfo>false</generateProjectInfo>
+					<generateReports>false</generateReports>
+					<generateSitemap>false</generateSitemap>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/test/resources/planilhaMassa</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 	<reporting>
 		<plugins>
